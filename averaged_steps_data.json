@@ -1,0 +1,258 @@
+{
+    "\u0448\u0430\u0433 1": {
+        "leg_length_difference": 19.6966552734375,
+        "shoulder_height_difference": 9.556106567382812,
+        "pelvis_tilt": 0.390380859375,
+        "knee_valgus_varus": [
+            163.75933837890625,
+            160.53628540039062
+        ],
+        "step_width": 160.42327880859375,
+        "step_asymmetry": 3.385894775390625,
+        "pelvis_rotation": 112.38919946688968,
+        "shoulder_rotation": 146.2127321637554,
+        "center_of_gravity_deviation": 154.37538452148442,
+        "arm_movement_symmetry": 180.22171020507812,
+        "step_count": 0
+    },
+    "\u0448\u0430\u0433 2": {
+        "leg_length_difference": 30.479461669921875,
+        "shoulder_height_difference": 2.90521240234375,
+        "pelvis_tilt": 2.618133544921875,
+        "knee_valgus_varus": [
+            174.08413696289062,
+            172.9050750732422
+        ],
+        "step_width": 249.93218994140625,
+        "step_asymmetry": 24.528366088867188,
+        "pelvis_rotation": 96.5851656332725,
+        "shoulder_rotation": 122.89156060495168,
+        "center_of_gravity_deviation": 111.86178588867188,
+        "arm_movement_symmetry": 6.986907958984375,
+        "step_count": 1
+    },
+    "\u0448\u0430\u0433 3": {
+        "leg_length_difference": 19.734100341796875,
+        "shoulder_height_difference": 9.546340942382812,
+        "pelvis_tilt": 0.38250732421875,
+        "knee_valgus_varus": [
+            163.7648162841797,
+            160.53282165527344
+        ],
+        "step_width": 160.316162109375,
+        "step_asymmetry": 3.4152374267578125,
+        "pelvis_rotation": 112.32336158082245,
+        "shoulder_rotation": 146.23176824973154,
+        "center_of_gravity_deviation": 154.35395507812495,
+        "arm_movement_symmetry": 180.07952880859375,
+        "step_count": 2
+    },
+    "\u0448\u0430\u0433 4": {
+        "leg_length_difference": 30.486480712890625,
+        "shoulder_height_difference": 2.9787139892578125,
+        "pelvis_tilt": 2.584716796875,
+        "knee_valgus_varus": [
+            174.06842041015625,
+            172.898681640625
+        ],
+        "step_width": 249.750244140625,
+        "step_asymmetry": 24.560546875,
+        "pelvis_rotation": 96.62880552127002,
+        "shoulder_rotation": 123.05987283884177,
+        "center_of_gravity_deviation": 111.79209594726558,
+        "arm_movement_symmetry": 7.199462890625,
+        "step_count": 3
+    },
+    "\u0448\u0430\u0433 5": {
+        "leg_length_difference": 19.734100341796875,
+        "shoulder_height_difference": 9.546340942382812,
+        "pelvis_tilt": 0.38250732421875,
+        "knee_valgus_varus": [
+            163.7648162841797,
+            160.53282165527344
+        ],
+        "step_width": 160.316162109375,
+        "step_asymmetry": 3.4152374267578125,
+        "pelvis_rotation": 112.32336158082245,
+        "shoulder_rotation": 146.23176824973154,
+        "center_of_gravity_deviation": 154.35395507812495,
+        "arm_movement_symmetry": 180.07952880859375,
+        "step_count": 4
+    },
+    "\u0448\u0430\u0433 6": {
+        "leg_length_difference": 30.486480712890625,
+        "shoulder_height_difference": 2.9787139892578125,
+        "pelvis_tilt": 2.584716796875,
+        "knee_valgus_varus": [
+            174.06842041015625,
+            172.898681640625
+        ],
+        "step_width": 249.750244140625,
+        "step_asymmetry": 24.560546875,
+        "pelvis_rotation": 96.62880552127002,
+        "shoulder_rotation": 123.05987283884177,
+        "center_of_gravity_deviation": 111.79209594726558,
+        "arm_movement_symmetry": 7.199462890625,
+        "step_count": 5
+    },
+    "\u0448\u0430\u0433 7": {
+        "leg_length_difference": 19.734100341796875,
+        "shoulder_height_difference": 9.546340942382812,
+        "pelvis_tilt": 0.38250732421875,
+        "knee_valgus_varus": [
+            163.7648162841797,
+            160.53282165527344
+        ],
+        "step_width": 160.316162109375,
+        "step_asymmetry": 3.4152374267578125,
+        "pelvis_rotation": 112.32336158082245,
+        "shoulder_rotation": 146.23176824973154,
+        "center_of_gravity_deviation": 154.35395507812495,
+        "arm_movement_symmetry": 180.07952880859375,
+        "step_count": 6
+    },
+    "\u0448\u0430\u0433 8": {
+        "leg_length_difference": 30.486480712890625,
+        "shoulder_height_difference": 2.9787139892578125,
+        "pelvis_tilt": 2.584716796875,
+        "knee_valgus_varus": [
+            174.06842041015625,
+            172.898681640625
+        ],
+        "step_width": 249.750244140625,
+        "step_asymmetry": 24.560546875,
+        "pelvis_rotation": 96.62880552127002,
+        "shoulder_rotation": 123.05987283884177,
+        "center_of_gravity_deviation": 111.79209594726558,
+        "arm_movement_symmetry": 7.199462890625,
+        "step_count": 7
+    },
+    "\u0448\u0430\u0433 9": {
+        "leg_length_difference": 19.6966552734375,
+        "shoulder_height_difference": 9.556106567382812,
+        "pelvis_tilt": 0.390380859375,
+        "knee_valgus_varus": [
+            163.75933837890625,
+            160.53628540039062
+        ],
+        "step_width": 160.42327880859375,
+        "step_asymmetry": 3.385894775390625,
+        "pelvis_rotation": 112.38919946688968,
+        "shoulder_rotation": 146.2127321637554,
+        "center_of_gravity_deviation": 154.37538452148442,
+        "arm_movement_symmetry": 180.22171020507812,
+        "step_count": 8
+    },
+    "\u0448\u0430\u0433 10": {
+        "leg_length_difference": 30.479461669921875,
+        "shoulder_height_difference": 2.90521240234375,
+        "pelvis_tilt": 2.618133544921875,
+        "knee_valgus_varus": [
+            174.08413696289062,
+            172.9050750732422
+        ],
+        "step_width": 249.93218994140625,
+        "step_asymmetry": 24.528366088867188,
+        "pelvis_rotation": 96.5851656332725,
+        "shoulder_rotation": 122.89156060495168,
+        "center_of_gravity_deviation": 111.86178588867188,
+        "arm_movement_symmetry": 6.986907958984375,
+        "step_count": 9
+    },
+    "\u0448\u0430\u0433 11": {
+        "leg_length_difference": 19.734100341796875,
+        "shoulder_height_difference": 9.546340942382812,
+        "pelvis_tilt": 0.38250732421875,
+        "knee_valgus_varus": [
+            163.7648162841797,
+            160.53282165527344
+        ],
+        "step_width": 160.316162109375,
+        "step_asymmetry": 3.4152374267578125,
+        "pelvis_rotation": 112.32336158082245,
+        "shoulder_rotation": 146.23176824973154,
+        "center_of_gravity_deviation": 154.35395507812495,
+        "arm_movement_symmetry": 180.07952880859375,
+        "step_count": 10
+    },
+    "\u0448\u0430\u0433 12": {
+        "leg_length_difference": 30.486480712890625,
+        "shoulder_height_difference": 2.9787139892578125,
+        "pelvis_tilt": 2.584716796875,
+        "knee_valgus_varus": [
+            174.06842041015625,
+            172.898681640625
+        ],
+        "step_width": 249.750244140625,
+        "step_asymmetry": 24.560546875,
+        "pelvis_rotation": 96.62880552127002,
+        "shoulder_rotation": 123.05987283884177,
+        "center_of_gravity_deviation": 111.79209594726558,
+        "arm_movement_symmetry": 7.199462890625,
+        "step_count": 11
+    },
+    "\u0448\u0430\u0433 13": {
+        "leg_length_difference": 19.734100341796875,
+        "shoulder_height_difference": 9.546340942382812,
+        "pelvis_tilt": 0.38250732421875,
+        "knee_valgus_varus": [
+            163.7648162841797,
+            160.53282165527344
+        ],
+        "step_width": 160.316162109375,
+        "step_asymmetry": 3.4152374267578125,
+        "pelvis_rotation": 112.32336158082245,
+        "shoulder_rotation": 146.23176824973154,
+        "center_of_gravity_deviation": 154.35395507812495,
+        "arm_movement_symmetry": 180.07952880859375,
+        "step_count": 12
+    },
+    "\u0448\u0430\u0433 14": {
+        "leg_length_difference": 30.486480712890625,
+        "shoulder_height_difference": 2.9787139892578125,
+        "pelvis_tilt": 2.584716796875,
+        "knee_valgus_varus": [
+            174.06842041015625,
+            172.898681640625
+        ],
+        "step_width": 249.750244140625,
+        "step_asymmetry": 24.560546875,
+        "pelvis_rotation": 96.62880552127002,
+        "shoulder_rotation": 123.05987283884177,
+        "center_of_gravity_deviation": 111.79209594726558,
+        "arm_movement_symmetry": 7.199462890625,
+        "step_count": 13
+    },
+    "\u0448\u0430\u0433 15": {
+        "leg_length_difference": 19.734100341796875,
+        "shoulder_height_difference": 9.546340942382812,
+        "pelvis_tilt": 0.38250732421875,
+        "knee_valgus_varus": [
+            163.7648162841797,
+            160.53282165527344
+        ],
+        "step_width": 160.316162109375,
+        "step_asymmetry": 3.4152374267578125,
+        "pelvis_rotation": 112.32336158082245,
+        "shoulder_rotation": 146.23176824973154,
+        "center_of_gravity_deviation": 154.35395507812495,
+        "arm_movement_symmetry": 180.07952880859375,
+        "step_count": 14
+    },
+    "\u0448\u0430\u0433 16": {
+        "leg_length_difference": 30.486480712890625,
+        "shoulder_height_difference": 2.9787139892578125,
+        "pelvis_tilt": 2.584716796875,
+        "knee_valgus_varus": [
+            174.06842041015625,
+            172.898681640625
+        ],
+        "step_width": 249.750244140625,
+        "step_asymmetry": 24.560546875,
+        "pelvis_rotation": 96.62880552127002,
+        "shoulder_rotation": 123.05987283884177,
+        "center_of_gravity_deviation": 111.79209594726558,
+        "arm_movement_symmetry": 7.199462890625,
+        "step_count": 15
+    }
+}
