@@ -7,7 +7,6 @@ import torch
 
 logging.getLogger('ultralytics').setLevel(logging.ERROR)
 
-
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # Функция для вычисления центра тяжести
@@ -28,38 +27,30 @@ def calculate_average_keypoints(keypoints_buffer):
 def calculate_distance(point1, point2):
     return np.linalg.norm(point1 - point2)
 
-# Функция для вычисления разницы в длине ног
 def leg_length_difference(keypoints):
     left_leg_length = np.linalg.norm(keypoints['left_ankle'] - keypoints['left_hip'])
     right_leg_length = np.linalg.norm(keypoints['right_ankle'] - keypoints['right_hip'])
     return float(abs(left_leg_length - right_leg_length))
 
-
-# Высота плеч (разница в высоте между левым и правым плечом)
 def shoulder_height_difference(keypoints):
     return float(abs(keypoints['left_shoulder'][1] - keypoints['right_shoulder'][1]))
 
-# Наклон таза (разница в высоте между левым и правым бедром)
 def pelvis_tilt(keypoints):
     return float(abs(keypoints['left_hip'][1] - keypoints['right_hip'][1]))
 
-# Вальгус/варус коленей (угол отклонения коленей внутрь или наружу)
 def knee_valgus_varus(keypoints):
     left_knee_angle = calculate_angle(keypoints['left_hip'], keypoints['left_knee'], keypoints['left_ankle'])
     right_knee_angle = calculate_angle(keypoints['right_hip'], keypoints['right_knee'], keypoints['right_ankle'])
     return float(left_knee_angle), float(right_knee_angle)
 
-# Ширина шага (расстояние между стопами)
 def step_width(keypoints):
     return float(abs(keypoints['left_ankle'][0] - keypoints['right_ankle'][0]))
 
-# Асимметрия шага (разница в длине шага между ногами)
 def step_asymmetry(keypoints):
     left_step_length = np.linalg.norm(keypoints['left_ankle'] - keypoints['left_knee'])
     right_step_length = np.linalg.norm(keypoints['right_ankle'] - keypoints['right_knee'])
     return float(abs(left_step_length - right_step_length))
 
-# Ротация таза и плеч (угол ротации таза и плеч по отношению к центральной оси)
 def pelvis_rotation(keypoints):
     pelvis_angle = calculate_angle(keypoints['left_hip'], keypoints['right_hip'], [keypoints['center_of_mass'][0], 0])
     return float(pelvis_angle)
@@ -68,18 +59,15 @@ def shoulder_rotation(keypoints):
     shoulder_angle = calculate_angle(keypoints['left_shoulder'], keypoints['right_shoulder'], [keypoints['center_of_mass'][0], 0])
     return float(shoulder_angle)
 
-# Отклонение центра тяжести (от средней линии тела)
 def center_of_gravity_deviation(keypoints):
-    midpoint_hip = (keypoints['left_hip'] + keypoints['right_hip']) / 2  # Рассчитываем середину между бедрами
+    midpoint_hip = (keypoints['left_hip'] + keypoints['right_hip']) / 2
     return float(abs(keypoints['center_of_mass'][0] - midpoint_hip[0]))
 
-# Симметрия движения рук (разница в амплитуде движения рук)
 def arm_movement_symmetry(keypoints):
     left_arm_length = np.linalg.norm(keypoints['left_shoulder'] - keypoints['left_hand'])
     right_arm_length = np.linalg.norm(keypoints['right_shoulder'] - keypoints['right_hand'])
     return float(abs(left_arm_length - right_arm_length))
 
-# Вспомогательная функция для расчета угла между тремя точками
 def calculate_angle(point1, point2, point3):
     a = np.array(point1)
     b = np.array(point2)
@@ -90,7 +78,6 @@ def calculate_angle(point1, point2, point3):
     angle = np.arccos(cosine_angle)
     return np.degrees(angle)
 
-# Функция для обработки видео и сохранения аннотированного видео с расчетами в JSON
 # Функция для обработки видео и сохранения аннотированного видео с расчетами в JSON
 def process_video(video_path, output_video_path, yolo_model='yolo11n-pose.pt', confidence_threshold=0.5, avg_frame_interval=10):
     model = YOLO(yolo_model).to(device)
@@ -106,27 +93,15 @@ def process_video(video_path, output_video_path, yolo_model='yolo11n-pose.pt', c
     averaged_steps_data = {}
     frame_number = 0
     keypoints_buffer = []
-    step_count = 0  # Начнем с 0, чтобы правильно отслеживать шаги
+    step_count = 0
 
     previous_left_ankle = None
     previous_right_ankle = None
     current_step_distance = 0
-    min_distance_threshold = 50  # Уменьшенное значение порога дистанции
-    min_frame_gap = 30  # Уменьшенный интервал между шагами
+    min_distance_threshold = 30
+    min_frame_gap = 10
     last_step_frame = 0
-    step_in_progress = False  # Отслеживаем, идет ли шаг
-
-    min_leg_movement_threshold = 15  # Минимальное движение, чтобы зафиксировать начало шага
-
-    # Инициализация переменных для отслеживания шагов
-    previous_left_ankle = None
-    previous_right_ankle = None
-    left_step_in_progress = False
-    right_step_in_progress = False
-    step_count = 0
-    last_left_step_frame = 0  # Добавляем отдельный счетчик кадров для каждой ноги
-    last_right_step_frame = 0
-    averaged_steps_data = {}
+    step_in_progress = False
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -134,18 +109,8 @@ def process_video(video_path, output_video_path, yolo_model='yolo11n-pose.pt', c
             break
 
         results = model(frame, conf=confidence_threshold)
-
-        # Проверка, есть ли ключевые точки
-        if results[0].keypoints is None or len(results[0].keypoints.xy) == 0:
-            continue  # Пропускаем кадр, если ключевые точки не были обнаружены
-
         keypoints = results[0].keypoints.xy.cpu().numpy().reshape(-1, 2)
 
-        # Проверка на достаточное количество точек
-        if len(keypoints) < 17:
-            continue  # Пропускаем кадр, если количество точек меньше 17
-
-        # Теперь безопасно извлекаем ключевые точки
         keypoints_dict = {
             'left_ankle': keypoints[15],
             'right_ankle': keypoints[16],
@@ -159,6 +124,7 @@ def process_video(video_path, output_video_path, yolo_model='yolo11n-pose.pt', c
             'right_hand': keypoints[10],
             'center_of_mass': calculate_center(keypoints)
         }
+
         keypoints_buffer.append(keypoints_dict)
 
         if (frame_number + 1) % avg_frame_interval == 0:
@@ -178,50 +144,30 @@ def process_video(video_path, output_video_path, yolo_model='yolo11n-pose.pt', c
                 "arm_movement_symmetry": arm_movement_symmetry(avg_keypoints),
                 "step_count": step_count
             }
+
             frame_data_converted = {k: float(v) if isinstance(v, np.float32) else v for k, v in frame_data.items()}
             video_data.append(frame_data_converted)
             annotated_frame = results[0].plot()
             out.write(annotated_frame)
-
-            # Отображаем кадр в окне
-            cv2.imshow('Video', annotated_frame)
-
-            # Прерываем обработку, если окно закрыто
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+        
+            cv2.imshow("Annotated Video", annotated_frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):  # Остановка, если нажата клавиша "q"
                 break
 
-        # Пропустить расчет на первом кадре, когда предыдущих значений нет
+        current_step_distance = calculate_distance(keypoints_dict['left_ankle'], keypoints_dict['right_ankle'])
+
         if previous_left_ankle is not None and previous_right_ankle is not None:
-            left_distance = calculate_distance(previous_left_ankle, keypoints_dict['left_ankle'])
-            right_distance = calculate_distance(previous_right_ankle, keypoints_dict['right_ankle'])
-
-            # Логика определения шага левой ногой
-            if left_distance > min_distance_threshold and left_distance > min_leg_movement_threshold and not left_step_in_progress:
-                if frame_number - last_left_step_frame > min_frame_gap and frame_number - last_right_step_frame > min_frame_gap:
+            if current_step_distance > min_distance_threshold and not step_in_progress:
+                if frame_number - last_step_frame > min_frame_gap:
                     step_count += 1
-                    print(f"Шаг {step_count} (левая нога) на кадре {frame_number}")
+                    print(f"Шаг {step_count} зафиксирован на кадре {frame_number}")
                     averaged_steps_data[f"шаг {step_count}"] = frame_data_converted
-                    left_step_in_progress = True
-                    last_left_step_frame = frame_number  # Обновляем только для левой ноги
+                    last_step_frame = frame_number
+                    step_in_progress = True
 
-            # Сбрасываем флаг, если расстояние снова меньше порога
-            if left_distance < min_distance_threshold:
-                left_step_in_progress = False
+            elif current_step_distance < min_distance_threshold:
+                step_in_progress = False
 
-            # Логика определения шага правой ногой
-            if right_distance > min_distance_threshold and right_distance > min_leg_movement_threshold and not right_step_in_progress:
-                if frame_number - last_right_step_frame > min_frame_gap and frame_number - last_left_step_frame > min_frame_gap:
-                    step_count += 1
-                    print(f"Шаг {step_count} (правая нога) на кадре {frame_number}")
-                    averaged_steps_data[f"шаг {step_count}"] = frame_data_converted
-                    right_step_in_progress = True
-                    last_right_step_frame = frame_number  # Обновляем только для правой ноги
-
-            # Сбрасываем флаг, если расстояние снова меньше порога
-            if right_distance < min_distance_threshold:
-                right_step_in_progress = False
-
-        # Обновляем предыдущие позиции лодыжек для следующего кадра
         previous_left_ankle = keypoints_dict['left_ankle']
         previous_right_ankle = keypoints_dict['right_ankle']
         frame_number += 1
@@ -236,11 +182,7 @@ def process_video(video_path, output_video_path, yolo_model='yolo11n-pose.pt', c
     cap.release()
     out.release()
 
-    # Закрытие всех окон после завершения
-    cv2.destroyAllWindows()
-
-
 if __name__ == "__main__":
-    video_path = 'IMG.MOV'
+    video_path = 'video.mp4'
     output_video_path = 'annotated_video.mp4'
     process_video(video_path, output_video_path, confidence_threshold=0.5)
